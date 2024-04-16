@@ -31,7 +31,7 @@ const getRandomUser = async (): Promise<UserData> => {
 };
 
 const fetchRandomPhotos = async (): Promise<Photo[]> => {
-  const accessKey = 'dbqW_FreCX0DOA6i2x_JyLsrY91Xzar2MdBr95G3GxA';
+  const accessKey = 'DQkuMn_XzXaA9Q4vXaW70CgypYh8EtdoPtQcru0__wo';
   const url = `https://api.unsplash.com/photos/random?count=9&client_id=${accessKey}`;
 
   try {
@@ -50,6 +50,7 @@ const App: React.FC = () => {
   const [users, setUsers] = useAtom(usersAtom);
   const [selectedUser, setSelectedUser] = useAtom(selectedUserAtom);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCardSelected, setIsCardSelected] = useState<boolean>(false);
   const [photos, setPhotos] = useState<Photo[][]>([]);
 
   useEffect(() => {
@@ -90,13 +91,14 @@ const App: React.FC = () => {
     }));
     setUsers(updatedUsers);
     setSelectedUser(updatedUsers[index]);
+    setIsCardSelected(true);
   };
 
   return (
     <div className="grid grid-cols-3 px-28 py-5 h-screen">
       <div className="col-span-1 overflow-y-auto max-h-full scrollbar-thin scrollbar-thumb-rounded-full scrollbar-thumb-gray-700 scrollbar-track-gray-300 border-slate-300 border-2">
         {isLoading ? (
-          <div>Loading...</div>
+          <div className='flex justify-center item-center'>Loading...</div>
         ) : (
           users.map((user: UserData, index: number) => (
             <CardComponent
@@ -110,19 +112,28 @@ const App: React.FC = () => {
         )}
       </div>
 
-      <div className="col-span-2 flex justify-center border-slate-300 border-2">
-        {selectedUser && (
-          <div>
-            <div className='justify-center pt-10 '>
-              <div className='flex justify-center'> <h2>{selectedUser.title} {selectedUser.name}</h2></div>
-              <div className='flex justify-center'><p>{selectedUser.address}</p></div>
-            </div>
-            <div className='pt-12'>
-              <MemoizedPhotoGrid photos={photos} />
-            </div>
-          </div>
-        )}
+<div className="col-span-2 flex justify-center border-slate-300 border-2">
+  {selectedUser && isCardSelected ? (
+    <div>
+      <div className='justify-center pt-10 '>
+        <div className='flex justify-center'> 
+          <h2>{selectedUser.title} {selectedUser.name}</h2>
+        </div>
+        <div className='flex justify-center'>
+          <p>{selectedUser.address}</p>
+        </div>
       </div>
+      <div className='pt-12'>
+        <MemoizedPhotoGrid photos={photos} />
+      </div>
+    </div>
+  ) : (
+    <div className="flex items-center justify-center h-full">
+      <p className="text-gray-600 font-semibold">Select a card first</p>
+    </div>
+  )}
+</div>
+
     </div>
   );
 };
