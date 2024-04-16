@@ -7,6 +7,7 @@ interface UserData {
   name: string;
   title: string;
   address: string;
+  highlighted: boolean;
 }
 
 const getRandomUser = async (): Promise<UserData> => {
@@ -18,6 +19,7 @@ const getRandomUser = async (): Promise<UserData> => {
       name: `${user.name.first} ${user.name.last}`,
       title: user.name.title,
       address: `${user.location.street.name}, ${user.location.city}, ${user.location.country}`,
+      highlighted: true
     };
   } catch (error) {
     console.error('Error fetching random user:', error);

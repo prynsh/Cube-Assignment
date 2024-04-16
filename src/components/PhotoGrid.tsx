@@ -11,7 +11,7 @@ const PhotoGrid: React.FC = () => {
 
     useEffect(() => {
         const fetchRandomPhotos = async (): Promise<void> => {
-            const accessKey = 'OqaHORLlb28HkEo1cAJg8XMfUEj-QPuQeWx7HhUj5Pk';
+            const accessKey = 'mvlbccA2la3DPiZvGX32caPLE1k1gXDbhZws41uEF10';
             const url = `https://api.unsplash.com/photos/random?count=9&client_id=${accessKey}`;
 
             try {
