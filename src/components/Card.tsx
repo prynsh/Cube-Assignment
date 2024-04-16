@@ -7,7 +7,7 @@ interface CardProps {
   highlighted: boolean;
 }
 
-const CardComponent: React.FC<CardProps> = ({ name, title, onClick, highlighted }) => {
+const CardComponent: React.FC<CardProps> = React.memo(({ name, title, onClick, highlighted }) => {
   return (
     <div
       className={`p-4 border cursor-pointer overflow-auto max-h-24 ${highlighted ? 'bg-slate-200' : ''}`}
@@ -17,6 +17,6 @@ const CardComponent: React.FC<CardProps> = ({ name, title, onClick, highlighted 
       <p className="text-gray-600">{name}</p>
     </div>
   );
-};
+});
 
 export default CardComponent;
