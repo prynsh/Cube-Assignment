@@ -1,8 +1,9 @@
 # Cube Assignment README
 
 Welcome to the Cube Assignment repository! This project is developed using React, Tailwind CSS, and TypeScript. Below you'll find instructions on how to set up the project locally and where you can access the hosted version.
+## The deployment link - https://cube-assignment-two.vercel.app/ 
 
-## Installation Process
+### Installation Process
 
 To get started with the project, follow these simple steps:
 
