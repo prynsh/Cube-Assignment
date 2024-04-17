@@ -23,3 +23,5 @@ npm install
 ```
 npm run dev
 ```
+
+The webpage looks like this for reference- ![cube] (./cube.png)
